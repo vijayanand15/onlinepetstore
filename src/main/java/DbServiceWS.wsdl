@@ -1,0 +1,45 @@
+<definitions name="DataBaseServiceService" targetNamespace="http://data.cloud.com/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://data.cloud.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <types>
+      <xs:schema targetNamespace="http://data.cloud.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+         <xs:element name="getEntityManager" type="tns:getEntityManager"/>
+         <xs:element name="getEntityManagerResponse" type="tns:getEntityManagerResponse"/>
+         <xs:complexType name="getEntityManager">
+            <xs:sequence/>
+         </xs:complexType>
+         <xs:complexType name="getEntityManagerResponse">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="return" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+   </types>
+   <message name="DataBaseService_getEntityManager">
+      <part element="tns:getEntityManager" name="getEntityManager"/>
+   </message>
+   <message name="DataBaseService_getEntityManagerResponse">
+      <part element="tns:getEntityManagerResponse" name="getEntityManagerResponse"/>
+   </message>
+   <portType name="DataBaseService">
+      <operation name="getEntityManager" parameterOrder="getEntityManager">
+         <input message="tns:DataBaseService_getEntityManager"/>
+         <output message="tns:DataBaseService_getEntityManagerResponse"/>
+      </operation>
+   </portType>
+   <binding name="DataBaseServiceBinding" type="tns:DataBaseService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <operation name="getEntityManager">
+         <soap:operation soapAction=""/>
+         <input>
+            <soap:body use="literal"/>
+         </input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+      </operation>
+   </binding>
+   <service name="DataBaseServiceService">
+      <port binding="tns:DataBaseServiceBinding" name="DataBaseServicePort">
+         <soap:address location="http://127.0.0.1:8080/DBService/DataBaseService"/>
+      </port>
+   </service>
+</definitions>
